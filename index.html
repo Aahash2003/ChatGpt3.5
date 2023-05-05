@@ -12,7 +12,7 @@
 
 <body>
     <main>
-        <h1>ChatGPT3.5 API</h1>
+        <h1>Chat GPT 3.5 API</h1>
         <form action="">
             <input type="text" name="message" id="message">
             <buttom type="submit">Send</button>
@@ -39,7 +39,7 @@
                 `;
             chatLog.appendChild(messageElement);
             chatLog.scrollTop = chatLog.scrollHeight;
-            fetch('http://localhost:3001', {
+            fetch('http://localhost:3000', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

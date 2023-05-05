@@ -35,11 +35,11 @@
             messageElement.classList.add('message');
             messageElement.classList.add('message--sent');
             messageElement.innerHTML = `
-                <div class="message__text">${messageText}</div>
+                <div class="message_ _text">${messageText}</div>
                 `;
             chatLog.appendChild(messageElement);
             chatLog.scrollTop = chatLog.scrollHeight;
-            fetch('http://localhost:3000', {
+            fetch('http://localhost:8080', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -48,19 +48,19 @@
                     messages
                 })
             })
-                .then(res => res.json())
-                .then(data => {
-                    let newAssistantMessage = {"role": "assistant", "content": `${data.completion.content}`}
-                    messages.push(newAssistantMessage)
-                    const messageElement = document.createElement('div');
-                    messageElement.classList.add('message');
-                    messageElement.classList.add('message--received');
-                    messageElement.innerHTML = `
-                <div class="message__text">${data.completion.content}</div>
-                `;
-                    chatLog.appendChild(messageElement);
-                    chatLog.scrollTop = chatLog.scrollHeight;
-                })
+            .then(res => res.json())
+            .then(data => {
+                let newAssistantMessage = {"role": "assistant", "content": `${data.completion.content}`}
+                messages.push(newAssistantMessage)
+                const messageElement = document.createElement('div');
+                messageElement.classList.add('message');
+                messageElement.classList.add('message--received');
+                messageElement.innerHTML = `
+                    <div class="message__text">${data.completion.content}</div>
+                    `;
+                chatLog.appendChild(messageElement);
+                chatLog.scrollTop = chatLog.scrollHeight;
+            })
 
         })
     </script>
